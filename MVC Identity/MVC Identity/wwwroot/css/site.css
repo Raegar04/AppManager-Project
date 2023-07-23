@@ -1,0 +1,26 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    background-color: lightgreen;
+}
+
+header {
+    background-color: green;
+}
+.nav-link.highlight-on-hover:hover {
+    background-color: #cce5ff; /* Light blue background color on hover */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}

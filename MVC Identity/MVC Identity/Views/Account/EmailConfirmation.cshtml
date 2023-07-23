@@ -1,0 +1,7 @@
+﻿@using MVC_Identity.ViewModels;
+@model EmailConfirmationViewModel
+
+<form asp-controller="Account" asp-action="EmailConfirmation" method="post">
+    <input type="text" asp-for=VerifyCode value="Enter code" />
+    <input type="submit" value="Send code" />
+</form>

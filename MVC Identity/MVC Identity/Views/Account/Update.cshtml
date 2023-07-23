@@ -1,0 +1,19 @@
+﻿@using MVC_Identity.ViewModels;
+@model ManageActionsViewModel
+
+<h3>Welcome! Check your next action:</h3>
+<br />
+<div>
+    <form asp-controller="Account" asp-action="ManageActions" method="post">
+        <div>
+            <label asp-for="SelectedAction">Actions:</label>
+            <select asp-for="SelectedAction" asp-items="@(new SelectList(Model.Actions, $"{Model.SelectedAction}"))">
+                <option value="">-- Select --</option>
+            </select>
+        </div>
+
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
