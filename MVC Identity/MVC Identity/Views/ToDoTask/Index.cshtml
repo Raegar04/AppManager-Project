@@ -1,0 +1,62 @@
+﻿@using MVC_First.Models;
+@using MVC_Identity.ViewModels;
+@using Microsoft.AspNetCore.Identity;
+@model ManageEntitiesViewModel<ToDoTask>
+@inject UserManager<AppUser> _userManager
+<style>
+    .user-card {
+        background-color: #e6faff; /* Pale blue background color */
+        border: 1px solid #d8d8d8; /* Optional: Add a border for visual separation */
+    }
+
+        .user-card:hover {
+            background-color: #cce5ff; /* Light blue background color on hover */
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+        }
+</style>
+<h3 class="text-center">Welcome! Check your tasks here:</h3>
+<br />
+<div>
+    @if ((await _userManager.GetRolesAsync((await _userManager.GetUserAsync(User))))[0] == "StakeHolder")
+    {
+        <a class="nav-link border border-primary rounded p-2 d-block text-center highlight-on-hover" asp-area="" asp-controller="ToDoTask" asp-action="Create">Create new task:</a>
+    }
+    @foreach (var item in Model.Items)
+    {
+        <div class="container mt-4 rounded ">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card-body user-card">
+                        <!-- Added the user-card class -->
+                        <h5 class="card-title text-center">@item.Name</h5>
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-text">Starus: @item.Status</p>
+                        <p class="card-text">Priority: @item.Priority</p>
+                        <p class="card-text">Start:@item.StartTime</p>
+                        <p class="card-text">DeadLine: @item.DeadLine</p>
+                        <p class="card-text">
+                            @if ((await _userManager.GetRolesAsync((await _userManager.GetUserAsync(User))))[0] == "StakeHolder")
+                            {
+                                <div>
+                                    <div>
+                                        <form class="d-inline-block" asp-controller="ToDoTask" asp-action="GetTaskToUpdate" method="post">
+                                            <input type="hidden" asp-for="Name" value="@item.Name">
+                                            <input type="submit" class="btn btn-primary" value="Update">
+                                        </form>
+
+                                        <form class="d-inline-block" asp-controller="ToDoTask" asp-action="Delete" method="post">
+                                            <input type="hidden" asp-for="Name" value="@item.Name">
+                                            <input type="submit" class="btn btn-danger" value="Delete">
+                                        </form>
+                                    </div><br>
+                                </div>
+
+                            }
+
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }

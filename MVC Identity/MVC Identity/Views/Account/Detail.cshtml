@@ -1,0 +1,25 @@
+﻿@using MVC_Identity.ViewModels;
+@model DetailUserViewModel
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Model.UserName</h5>
+                <p class="card-text">Email: @Model.Email</p>
+                <p class="card-text">Role: @Model.Role</p>
+                <h6>Projects:</h6>
+                <div class="bg-light bg-orange p-4">
+                    @foreach (var project in Model.Projects)
+                    {
+                        <br />
+                        <p class="card-text ">Name: @project.Name</p>
+                        <p class="card-text ">Description: @project.Description</p>
+                        <br />
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,33 @@
+﻿@using Core.Enums;
+@using MVC_Identity.ViewModels;
+
+@model InfoToDoTaskViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form method="post" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name">Title</label>
+        <input asp-for="Name" class="form-control" placeholder="Enter title of the task">
+    </div><br>
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <input asp-for="Description" class="form-control" placeholder="Enter Description of the task">
+    </div><br>
+    <div class="form-group">
+        <label asp-for="Priority">Task Priority</label><br>
+        <select asp-for="Priority" asp-items="@Html.GetEnumSelectList<TaskPriority>()"><option>---Select---</option></select>
+    </div><br>
+    <div class="form-group">
+
+        <label asp-for="StartTime">StartTime</label>
+        <input asp-for="StartTime" type="date" class="form-control" />
+    </div><br>
+    <div class="form-group">
+        <label asp-for="DeadLine">DeadLine</label>
+        <input asp-for="DeadLine" type="date" class="form-control" />
+    </div><br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
